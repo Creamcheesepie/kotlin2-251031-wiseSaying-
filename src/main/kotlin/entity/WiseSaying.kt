@@ -6,4 +6,6 @@ data class WiseSaying(
     fun print(){
         println("${this@WiseSaying.id} / $author / $content")
     }
+
+
 }
