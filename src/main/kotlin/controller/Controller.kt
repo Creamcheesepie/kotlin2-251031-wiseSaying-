@@ -1,10 +1,10 @@
 package com.back.controller
 
+import com.back.System.controller.SystemController
 import com.back.rq.Rq
 import com.back.service.Service
 
 class Controller {
-
 
     fun run(){
         val controller = Service();
@@ -21,6 +21,7 @@ class Controller {
                 "삭제" -> controller.deleteWiseSaying(rq.getPramValueAsInt("id",0));
                 "수정" -> controller.updateWiseSaying(rq.getPramValueAsInt("id",0));
                 "종료" -> break;
+                "종료" -> SystemController().exit();
             }
         }
     }

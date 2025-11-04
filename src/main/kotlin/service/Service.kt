@@ -1,44 +1,40 @@
 package com.back.service
 
 import com.back.entity.WiseSaying
+import com.back.repository.WiseSayingRepository
 
 class Service {
-    var wiseSayings : MutableList<WiseSaying> = mutableListOf();
-    var id : Int = 1;
+   val wiseSayingRepository: WiseSayingRepository = WiseSayingRepository();
 
     fun saveWiseSaying(){
         print("명언: ")
         val content : String = readln();
         print("작가: ")
         val author : String = readln();
-        wiseSayings.add(WiseSaying(id++, content, author));
+        wiseSayingRepository.save(WiseSaying(0,content,author));
     }
 
     fun wiseSayingList(){
         println("번호    /    작가  /   명언")
-        for(wiseSaying in wiseSayings){
+        for(wiseSaying in wiseSayingRepository.getAllWiseSayings()){
             wiseSaying.print();
         }
     }
 
     fun deleteWiseSaying(id : Int){
-        var wiseSaying = wiseSayings.firstOrNull{
-            it.id == id
-        }
+        val wiseSaying = wiseSayingRepository.findById(id)
 
         if(wiseSaying == null){
             println("${id}번 명언은 존재하지 않습니다.");
             return;
         }
 
-        wiseSayings.remove(wiseSaying)
+        wiseSayingRepository.delete(wiseSaying)
         println("${id}번 명언이 삭제되었습니다.");
     }
 
     fun updateWiseSaying(id : Int){
-        var wiseSaying: WiseSaying? = wiseSayings.firstOrNull{
-            it.id == id;
-        };
+        var wiseSaying: WiseSaying? = wiseSayingRepository.findById(id)
 
         if(wiseSaying == null){
             println("${id}번 명언은 존재하지 않습니다.");
@@ -53,7 +49,8 @@ class Service {
         val author : String = readln();
 
         val updateWiseSaying : WiseSaying = WiseSaying(id, content, author);
-        wiseSayings.set(wiseSayings.indexOf(wiseSaying),updateWiseSaying);
+        wiseSayingRepository.update(wiseSaying, updateWiseSaying);
         println("${id}번 명언이 수정되었습니다.");
     }
+
 }
