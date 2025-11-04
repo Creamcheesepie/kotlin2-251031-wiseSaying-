@@ -1,6 +1,6 @@
-package com.back.repository
+package com.back.domain.wiseSaying.repository
 
-import com.back.entity.WiseSaying
+import com.back.domain.wiseSaying.entity.WiseSaying
 
 class WiseSayingRepository {
     var wiseSayings : MutableList<WiseSaying> = mutableListOf();

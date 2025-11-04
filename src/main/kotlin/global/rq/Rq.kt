@@ -1,4 +1,4 @@
-package com.back.rq
+package com.back.global.rq
 
 class Rq(val cmd : String) {
     val action : String ;

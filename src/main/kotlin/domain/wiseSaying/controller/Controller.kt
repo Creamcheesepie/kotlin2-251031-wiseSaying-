@@ -1,8 +1,8 @@
-package com.back.controller
+package com.back.domain.wiseSaying.controller
 
-import com.back.System.controller.SystemController
-import com.back.rq.Rq
-import com.back.service.Service
+import com.back.domain.system.SystemController
+import com.back.global.rq.Rq
+import com.back.domain.wiseSaying.service.Service
 
 class Controller {
 

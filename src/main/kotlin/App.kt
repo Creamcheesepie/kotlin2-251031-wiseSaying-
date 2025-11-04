@@ -1,6 +1,6 @@
 package com.back
 
-import com.back.controller.Controller
+import com.back.domain.wiseSaying.controller.Controller
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
