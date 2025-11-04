@@ -9,7 +9,7 @@ object TestRunner {
     private val originalIn : InputStream = System.`in`;
     private val originalOut = System.out;
 
-    fun run(input : String): String{
+    fun run(input : String): String {
         System.setIn(
             ByteArrayInputStream(
                 ("${input.trimIndent()}\n종료")
@@ -17,26 +17,18 @@ object TestRunner {
             )
         )
 
-        val outputStream = ByteArrayOutputStream()
-        val printStream  = PrintStream(outputStream)
+        return ByteArrayOutputStream().use { outputStream ->
+            PrintStream(outputStream).use { printStream ->
+                System.setOut(printStream);
 
-        System.setOut(printStream);
+                App().run();
 
-        App().run();
-
-        val result = outputStream
-            .toString()
-            .trim()
-            .replace(Regex("\\r\\n"),"\\n") // 개행문자 표준화
-
-        outputStream.close()
-        printStream.close()
-
-        //다시 표준 입력으로 복구
-        System.setIn(originalIn);
-        System.setOut(originalOut);
-
-
-        return result;
+                val result = outputStream
+                    .toString()
+                    .trim()
+                    .replace(Regex("\\r\\n"), "\\n")
+                result
+            }
+        }
     }
 }
